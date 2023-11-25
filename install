@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# WARNING: To add the custom nix file you will need to
+# add "<path-to-repo>/nix/configuration.nix" to your
+# imports in the main config file /etc/nixos/configuration.nix
+
+ln -s ./bash/.bashrc ~/
+ln -s ./hypr/hyprland.conf ~/.config/hypr/
+ln -s ./eww/eww.yuck ~/.config/eww/
+ln -s ./eww/eww.scss ~/.config/eww/
