@@ -1,0 +1,95 @@
+(defwindow topbar
+	:monitor 0
+	:geometry (geometry 
+		:x "0%"
+		:y "0%"
+		:width "100%"
+		:height "20px"
+		:anchor "top center")
+	:stacking "fg"
+	:exclusive true
+	:namespace "eww"
+	(bar))
+
+(defwidget bar []
+	(box
+		:orientation "h"
+		:class "bar_widget"
+		(left)
+		(right)
+	))
+
+
+
+
+;; RIGHT
+(defwidget right []
+	(box
+		:orientation "h"
+		:halign "end"
+		:class "right_modules"
+	(wifi)
+	(mem)
+	(bat)
+	))
+
+(defpoll WIFI_ICON :interval "1m" "~/.dot/eww/scripts/wifi --ICON")
+(defpoll WIFI_ESSID :interval "1m" "~/.dot/eww/scripts/wifi --ESSID")
+(defwidget wifi [] (eventbox 
+	(box
+		:class "wifi_module"
+		:vexpand "false" 
+		:hexpand "false" 
+		:space-evenly "false"
+		:tooltip WIFI_ESSID
+		WIFI_ICON
+		)))
+
+(defpoll battery :interval "15s" "~/.dot/eww/scripts/battery")
+(defwidget bat []
+	(box 
+		:class "bat_module"
+		:vexpand "false"
+		:hexpand "false"
+		:space-evenly "false"
+		"${battery}%"
+		))
+
+(defpoll memory :interval "15s" "~/.dot/eww/scripts/memory")
+(defwidget mem []
+	(box 
+		:class "mem_module"
+		:vexpand "false"
+		:hexpand "false" 
+		:space-evenly "false"
+		"${memory}"
+                ))
+
+
+
+
+;; LEFT
+(defwidget left []
+	(box 
+		:orientation "h"
+		:halign "start"
+		:class "left_modules"
+	(workspaces)))
+
+(deflisten workspaces :initial "[]" "bash ~/.dot/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "bash ~/.dot/eww/scripts/get-active-workspace")
+(defwidget workspaces [] (eventbox
+	:onscroll "bash ~/.dot/eww/scripts/change-active-workspace {} ${current_workspace}"
+	:class "workspaces-widget"
+    	(box 
+		:space-evenly true
+      		(label 
+			:text "${workspaces}${current_workspace}"
+			:visible false)
+      		(for workspace in workspaces
+        		(eventbox
+				:onclick "hyprctl dispatch workspace ${workspace.id}"
+          		(box
+				:class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            		(label :text "${workspace.id == current_workspace ? "" : ""}")
+		))))))

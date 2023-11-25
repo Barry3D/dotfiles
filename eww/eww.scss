@@ -1,0 +1,24 @@
+$rose: rgba(253, 43, 118, 1);
+$quinacridone-magenta: rgba(138, 39, 75, 1);
+$bg-black: rgba(0, 0, 0, 0.5);
+$light-gray: rgba(200, 200, 200, 1);
+$raisin-black: rgba(54, 46, 60, 1);
+$xanthous: rgba(255, 194, 99, 1);
+
+*{
+	all: unset;
+	font-family: "JetBrainsMono";
+}
+
+.bar_widget {
+	color: $light-gray;
+	background-color: $bg-black;
+}
+
+.workspace-entry {
+	padding: 4px;
+}
+
+.bat_module, .wifi_module {
+	padding: 4px;
+}

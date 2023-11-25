@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+BAT=`ls /sys/class/power_supply | grep BAT | head -n 1`
+CAP=$(cat /sys/class/power_supply/${BAT}/capacity)
+STA="$(cat /sys/class/power_supply/${BAT}/status)"
+
+if [[ $STA = "Charging" ]]
+then
+	ICON="󰂄"
+elif [[ $CAP -lt 10 ]]
+then
+	ICON="󰂎"
+elif [[ $CAP -ge 10 ]] && [[ $CAP -lt 25 ]]
+then
+	ICON="󰁻"
+elif [[ $CAP -ge 25 ]] && [[ $CAP -lt 50 ]]
+then
+	ICON="󰁾"
+elif [[ $CAP -ge 50 ]] && [[ $CAP -lt 75 ]]
+then
+	ICON="󰂀"
+elif [[ $CAP -ge 75 ]]
+then
+	ICON="󰁹"
+fi
+
+echo "$ICON $CAP"
+

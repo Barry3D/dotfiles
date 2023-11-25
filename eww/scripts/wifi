@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+status=$(nmcli g | grep -oE "disconnected")
+essid=$(nmcli c | grep wlp2s0 | awk '{print ($1)}')
+
+if [ $status ] ; then
+    icon="󰖪 offline"
+    text=""
+else
+	icon="󰖩 $(nmcli -f IN-USE,SIGNAL dev wifi list | awk '/^\*/{if (NR!=1) {print $2}}')%"
+    text="${essid}"
+fi
+
+
+
+if [[ "$1" == "--ESSID" ]]; then
+	echo $text
+elif [[ "$1" == "--ICON" ]]; then
+	echo $icon
+fi
+
