@@ -5,6 +5,11 @@
 # imports in the main config file /etc/nixos/configuration.nix
 
 ln -s ./bash/.bashrc ~/
+
 ln -s ./hypr/hyprland.conf ~/.config/hypr/
+
 ln -s ./eww/eww.yuck ~/.config/eww/
 ln -s ./eww/eww.scss ~/.config/eww/
+
+# To work add "include ./theme.conf" to your kitty.conf
+ln -s ./kitty/AtomOneLight.conf  ~/.config/kitty/theme.conf
