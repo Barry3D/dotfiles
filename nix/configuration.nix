@@ -24,15 +24,29 @@
     openssl
     killall
     git
-    jq
     unzip
     python3
     (python3.withPackages(ps: with ps; [ dbus ]))
-    octave
-    socat
     gnumake
     cmake
     gcc
+    # Utilities
+    jq 			# JSON processor
+    ripgrep 		# recursive grep
+    exa
+    # Network
+    mtr			# network diagnostics
+    dnsutils		# dig
+    nmap		# network discovery
+    socat		# netcat replacement
+    # Misc
+    file
+    which
+    tree
+    btop
+    gawk
+    gnused
+    gnutar
     # Bar
     pkgs.eww-wayland
     # Notification daemon
@@ -43,16 +57,16 @@
     # Terminal for hyprland
     kitty
     # Terminal improvements
+    nnn 		# Terminal based file manager
     pkgs.bat
     pkgs.fzf
     pkgs.zoxide
     # App launcher
     rofi-wayland
     # Misc. Apps
-    chromium
     firefox
-    dolphin
     pkgs.obsidian
+    pkgs.discord
     pkgs.jetbrains.clion
     pkgs.audacity
     pkgs.binwalk
