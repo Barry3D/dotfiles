@@ -1,10 +1,3 @@
-# dotfiles
-A collection of my personal dotfiles for quick deployment on new NixOS installations.
-
-### TODOs
-- [ ] Expand and improve upon the existing topbar
-- [ ] Add a power-menu for the toolbar
-- [ ] Add a proper light-mode theme for kitty, dolphin and rofi
-- [ ] Look into flakes and nix-shell for a better seperation between dev-environments
-- [ ] Put together a usable dev-environment with neovim
-- [ ] Improve the barebones config of starship
+> [!WARNING]
+> This is my former setup I used when I started out into nixos. It is bare bones and not really fleshed out. Usable but at some points really clunky.
+> I am only keeping this for reference while creating my new dotfiles and may delete this repo at any point.
